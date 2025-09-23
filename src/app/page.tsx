@@ -1,10 +1,14 @@
-import { SearchInput, BookCard } from "@/shared";
+"use client";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-export default function Home() {
+import { Home } from "@/page";
+
+export default function Page() {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="flex justify-center items-center h-screen">
-      <SearchInput placeholder="Поиск книг" />
-      <BookCard />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Home />
+    </QueryClientProvider>
   );
 }

@@ -18,7 +18,7 @@ export const SearchInput = ({
   searchKey = "search",
 }: Props) => {
   const [value, setValue] = useState("");
-  const debouncedValue = useDebounce(value, 500);
+  const debouncedValue = useDebounce(value, 1000);
 
   const searchParams = useSearchParams();
   const pathname = usePathname();

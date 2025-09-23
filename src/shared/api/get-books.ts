@@ -5,7 +5,7 @@ interface Params {
 }
 
 export const getBooks = ({ search }: Params) => {
-  const response = booksApi.get(`?q=${search}`);
+  const response = booksApi.get(`${search ? `?q=${search}` : ""}`);
 
   return response;
 };
