@@ -14,7 +14,7 @@ export const Home = () => {
 
   return (
     <Section>
-      <BookCard />
+      <BookCard img="" title="" description="" />
     </Section>
   );
 };
