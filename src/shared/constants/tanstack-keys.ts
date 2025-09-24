@@ -1,3 +1,3 @@
 export const TANSTACK_KEYS = {
-  books: "books",
+  characters: "characters",
 };

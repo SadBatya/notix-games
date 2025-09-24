@@ -1,21 +1,33 @@
 "use client";
 
-import { BookCard, Section } from "@/shared";
-import { useGetBooks } from "@/shared/api/hooks/useGetBooks";
+import { CharacterCard, Section, Skeleton } from "@/shared";
+import { useGetCharacters } from "@/shared/api";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const searchParams = useSearchParams();
-  const search = searchParams.get("q");
+  const name = searchParams.get("name");
 
-  const { data, isLoading, error } = useGetBooks({ search: search ?? "" });
+  const { data, isLoading, isPending, error } = useGetCharacters(name || "");
 
-  if (isLoading) return <div>Loading books...</div>;
-  if (error) return <div>Error loading books</div>;
+  if (isPending || isLoading)
+    return (
+      <div className="flex flex-wrap gap-4 justify-center">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <Skeleton key={index} />
+        ))}
+      </div>
+    );
+
+  if (error) return <Section>Ошибка загрузки персонажей</Section>;
 
   return (
     <Section>
-      <BookCard img="" title="" description="" />
+      <div className="flex flex-wrap gap-4 justify-center">
+        {data?.results.map(({ id, name, status, image }) => (
+          <CharacterCard key={id} img={image} title={name} status={status} />
+        ))}
+      </div>
     </Section>
   );
 }
