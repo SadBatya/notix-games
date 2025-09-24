@@ -23,11 +23,11 @@ export default function Page() {
 
   if (isPending || isLoading)
     return (
-      <div className="flex flex-wrap gap-4 justify-center">
-        {Array.from({ length: 10 }).map((_, index) => (
-          <Skeleton key={index} />
+      <Section className="flex flex-wrap gap-4 justify-center">
+        {Array.from({ length: 24 }).map((_, index) => (
+          <Skeleton width={320} height={416} key={index} />
         ))}
-      </div>
+      </Section>
     );
 
   return (
