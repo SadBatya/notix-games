@@ -44,7 +44,7 @@ export const SearchInput = ({
   return (
     <div
       className={twMerge(
-        "border border-white/20 active:border-white/50 outline-none flex items-center gap-4 px-4 py-2 rounded-md",
+        "border border-white/20 focus-within:border-white/50 transition-all duration-300 outline-none flex items-center gap-4 px-4 py-2 rounded-md",
         className
       )}
     >
@@ -56,6 +56,12 @@ export const SearchInput = ({
         placeholder={placeholder}
         className="outline-none border-none"
       />
+      <button
+        className="cursor-pointer bg-white/20 rounded-full p-1 opacity-50 hover:opacity-100 transition-all duration-300"
+        onClick={() => setValue("")}
+      >
+        <Image src="/close.svg" alt="close" width={16} height={16} />
+      </button>
     </div>
   );
 };
