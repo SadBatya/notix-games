@@ -8,7 +8,18 @@ export default function Page() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
 
-  const { data, isLoading, isPending, error } = useGetCharacters(name || "");
+  const { data, isLoading, isPending, isError } = useGetCharacters(name || "");
+
+  console.log(data, "персонажи");
+
+  if (isError)
+    return (
+      <Section className="flex items-center justify-center h-[calc(100vh-6rem)]">
+        <h1 className="text-4xl font-bold text-center">
+          Персонаж не найден :c
+        </h1>
+      </Section>
+    );
 
   if (isPending || isLoading)
     return (
@@ -18,8 +29,6 @@ export default function Page() {
         ))}
       </div>
     );
-
-  if (error) return <Section>Ошибка загрузки персонажей</Section>;
 
   return (
     <Section>
